@@ -60,13 +60,6 @@ AppAsset::register($this);
             <span>Products</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Product category</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -260,7 +253,7 @@ AppAsset::register($this);
                             <?php echo Yii::$app->user->identity->getDisplayName() ?>
                         </span>
                         <img class="img-profile rounded-circle"
-                             src="../img/undraw_profile.svg">
+                             src="/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
