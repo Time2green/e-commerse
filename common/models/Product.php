@@ -143,4 +143,11 @@ class Product extends \yii\db\ActiveRecord
             return Yii::$app->params['frontendUrl'].'/web/storage'.$this->image;}
         return Yii::$app->params['frontendUrl'].'/web/img/no_image.jpg';
     }
+/**
+ * Get short version of the description
+ */
+    public function getShortDescription()
+    {
+        return \yii\helpers\StringHelper::truncateWords(strip_tags($this->description), 30);
+    }
 }
