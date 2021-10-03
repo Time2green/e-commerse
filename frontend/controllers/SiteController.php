@@ -6,7 +6,6 @@ use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
-use yii\data\ActiveDataFilter;
 use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -16,12 +15,11 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends \frontend\base\Controller
 {
     /**
      * {@inheritdoc}
@@ -79,9 +77,10 @@ class SiteController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Product::find()->published(),
-            'pagination' => [
-                'pageSize' => 2
-            ]
+//            'pagination' => [
+//                'pageSize' => 3
+//            ]
+            'pagination'=>false
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider
