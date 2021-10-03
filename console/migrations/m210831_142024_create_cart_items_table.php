@@ -35,7 +35,7 @@ class m210831_142024_create_cart_items_table extends Migration
             '{{%fk-cart_items-product_id}}',
             '{{%cart_items}}',
             'product_id',
-            '{{%user}}',
+            '{{%products}}',
             'id',
             'CASCADE'
         );

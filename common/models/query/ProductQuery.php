@@ -38,4 +38,9 @@ class ProductQuery extends \yii\db\ActiveQuery
     public function published(){
         return $this -> andWhere(['status' => 1]);
     }
+
+    public function id($id)
+    {
+        return $this -> andWhere(['id' => $id]);
+    }
 }

@@ -10,6 +10,8 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
+$cartItemCount = $this->params['cartItemCount'];
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -35,18 +37,20 @@ AppAsset::register($this);
             'class' => 'navbar-expand-lg navbar-dark bg-dark fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+    $menuItems = [[
+            'label' => 'Cart <span id="cart-quantity" class="badge badge-success">'.$cartItemCount.'</span> ',
+            'url' => ['/cart/index'],
+            'encode' => false
+    ]];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
             'label' => Yii::$app->user->identity->getDisplayName(),
-//            'dropDownOptions' => [
-//                'class' => 'dropdown-menu-right'
-//            ],
+            'dropdownOptions' => [
+                'class' => 'dropdown-menu-right'
+            ],
             'items' => [
                 [
                     'label' => 'Profile',
