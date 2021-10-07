@@ -7,7 +7,7 @@
         <h3>Your card items</h3>
     </div>
     <div class="card-body p-0">
-
+        <?php if (!empty($items)): ?>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -31,7 +31,7 @@
                     <td><?php echo $item['total_price'] ?></td>
                     <td><?php echo \yii\helpers\Html::a('Detele', ['/cart/delete', 'id' =>$item['id']],[
                             'class' => 'btn btn-outline-danger btn-sm',
-                            'date-method' => 'post',
+                            'data-method' => 'post',
                             'data-confirm' => 'Are you sure want to remove this product from cart?'
                         ]) ?></td>
                 </tr>
@@ -41,5 +41,11 @@
         <div class="card-body text-right">
             <a href="<?php \yii\helpers\Url::to(['/cart/checkout']) ?>" class="btn btn-primary">Checkout</a>
         </div>
+
+        <?php else: ?>
+
+            <p class="text-muted text-center p-5">There are no items in the cart</p>
+
+        <?php endif; ?>
     </div>
 </div>
