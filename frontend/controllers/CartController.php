@@ -59,7 +59,7 @@ class CartController extends \frontend\base\Controller
         $id = \Yii::$app->request->post('id');
         $product = Product::find()->id($id)->published()->one();
         if (!$product){
-            throw new NotFoundHttpException("pfffffffffffffffff");
+            throw new NotFoundHttpException("Product does not exist");
         }
 
         if (\Yii::$app->user->isGuest){
@@ -128,5 +128,33 @@ class CartController extends \frontend\base\Controller
         }
 
         return $this->redirect(['index']);
+    }
+
+    public function actionChangeQuantity()
+    {
+        $id = \Yii::$app->request->post('id');
+        $product = Product::find()->id($id)->published()->one();
+        if (!$product){
+            throw new NotFoundHttpException("Product does not exist");
+        }
+        $quantity = \Yii::$app->request->post('quantity');
+        if (isGuest()){
+            $cartItems = \Yii::$app->session->get(CartItem::SESSION_KEY, []);
+            foreach ($cartItems as &$cartItem){
+                if ($cartItem['id']===$id){
+                    $cartItem['quantity'] = $quantity;
+                    break;
+                }
+            }
+            \Yii::$app->session->set(CartItem::SESSION_KEY, $cartItems);
+        } else {
+            $cartItem = CartItem::find()->userId(currUserId())->productId($id)->one();
+            if ($cartItem){
+                $cartItem['quantity'] = $quantity;
+                $cartItem->save();
+            }
+        }
+
+        return CartItem::getTotalQuantityForUser(currUserId());
     }
 }
