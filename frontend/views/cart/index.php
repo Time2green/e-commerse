@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <div class="card-body text-right">
-            <a href="<?php \yii\helpers\Url::to(['/cart/checkout']) ?>" class="btn btn-primary">Checkout</a>
+            <a href="<?php echo \yii\helpers\Url::to(['/cart/checkout']) ?>" class="btn btn-primary">Checkout</a>
         </div>
 
         <?php else: ?>
