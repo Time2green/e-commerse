@@ -6,8 +6,8 @@ use yii\db\Migration;
  * Handles the creation of table `{{%order_items}}`.
  * Has foreign keys to the tables:
  *
- * - `{{%user}}`
- * - `{{%user}}`
+ * - `{{%products}}`
+ * - `{{%orders}}`
  */
 class m210831_141024_create_order_items_table extends Migration
 {
@@ -20,7 +20,7 @@ class m210831_141024_create_order_items_table extends Migration
             'id' => $this->primaryKey(),
             'product_name' => $this->string(255)->notNull(),
             'product_id' => $this->integer(11)->notNull(),
-            'unit_price' => $this->decimal(10, 2)->notNull(),
+            'unit_price' => $this->decimal(10,2)->notNull(),
             'order_id' => $this->integer(11)->notNull(),
             'quantity' => $this->integer(2)->notNull(),
         ]);
@@ -32,12 +32,12 @@ class m210831_141024_create_order_items_table extends Migration
             'product_id'
         );
 
-        // add foreign key for table `{{%user}}`
+        // add foreign key for table `{{%products}}`
         $this->addForeignKey(
             '{{%fk-order_items-product_id}}',
             '{{%order_items}}',
             'product_id',
-            '{{%user}}',
+            '{{%products}}',
             'id',
             'CASCADE'
         );
@@ -49,12 +49,12 @@ class m210831_141024_create_order_items_table extends Migration
             'order_id'
         );
 
-        // add foreign key for table `{{%user}}`
+        // add foreign key for table `{{%orders}}`
         $this->addForeignKey(
             '{{%fk-order_items-order_id}}',
             '{{%order_items}}',
             'order_id',
-            '{{%user}}',
+            '{{%orders}}',
             'id',
             'CASCADE'
         );
@@ -65,7 +65,7 @@ class m210831_141024_create_order_items_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%user}}`
+        // drops foreign key for table `{{%products}}`
         $this->dropForeignKey(
             '{{%fk-order_items-product_id}}',
             '{{%order_items}}'
@@ -77,7 +77,7 @@ class m210831_141024_create_order_items_table extends Migration
             '{{%order_items}}'
         );
 
-        // drops foreign key for table `{{%user}}`
+        // drops foreign key for table `{{%orders}}`
         $this->dropForeignKey(
             '{{%fk-order_items-order_id}}',
             '{{%order_items}}'

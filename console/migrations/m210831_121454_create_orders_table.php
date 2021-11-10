@@ -8,7 +8,7 @@ use yii\db\Migration;
  *
  * - `{{%user}}`
  */
-class m210831_121453_create_orders_table extends Migration
+class m210831_121454_create_orders_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -17,12 +17,13 @@ class m210831_121453_create_orders_table extends Migration
     {
         $this->createTable('{{%orders}}', [
             'id' => $this->primaryKey(),
-            'total_price' => $this->decimal(10, 2)->notNull(),
+            'total_price' => $this->decimal(10,2)->notNull(),
             'status' => $this->tinyInteger(1)->notNull(),
             'firstname' => $this->string(45)->notNull(),
             'lastname' => $this->string(45)->notNull(),
             'email' => $this->string(255)->notNull(),
-            'transaction_id' => $this->integer(11),
+            'transaction_id' => $this->string(255),
+            'created_at' => $this->integer(11),
             'created_by' => $this->integer(11),
         ]);
 

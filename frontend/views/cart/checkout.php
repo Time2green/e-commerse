@@ -1,16 +1,18 @@
 <?php
 
-/** @var \common\models\Order $order */
-/** @var \common\models\OrderAddress $orderAddress */
+/** @var common\models\Order $order */
+/** @var common\models\OrderAddress $orderAddress */
 /** @var array $cartItems */
 /** @var int $productQuantity */
+
+/** @var float $totalPrice */
 
 use yii\bootstrap4\ActiveForm; ?>
 
 <?php $form = ActiveForm::begin([
-    'action' => [''],
+    'id' => 'checkout-form',
+//    'action' => '[/cart/submit-order]',
 ]); ?>
-
 <div class="row">
     <div class="col">
         <div class="card mb-3">
@@ -25,9 +27,10 @@ use yii\bootstrap4\ActiveForm; ?>
                     <div class="col-md-6">
                         <?= $form->field($order, 'lastname')->textInput() ?>
                     </div>
+                    <div class="col-md-6">
+                    <?= $form->field($order, 'email')->textInput() ?>
+                    </div>
                 </div>
-                <?= $form->field($order, 'email')->textInput() ?>
-
             </div>
         </div>
         <div class="card">
@@ -67,7 +70,4 @@ use yii\bootstrap4\ActiveForm; ?>
         </div>
     </div>
 </div>
-
-
 <?php ActiveForm::end(); ?>
-
